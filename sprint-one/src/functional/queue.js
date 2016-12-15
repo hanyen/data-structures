@@ -15,10 +15,12 @@ var Queue = function() {
   };
 
   someInstance.dequeue = function() {
+    //console.log(storage[firstKey]);
     var returnValue = storage[firstKey];
     delete storage[firstKey];
     size--;
     firstKey++;
+    // console.log("first: " + firstKey);
     if (size < 1) {
       size = 0;
       firstKey = 1;
