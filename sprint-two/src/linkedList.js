@@ -3,24 +3,30 @@ var LinkedList = function() {
   list.head = null;
   list.tail = null;
 
+  // 6 is passed to the function. value = 6
   list.addToTail = function(value) {
-    //list.tail = Node(value);
+    // naive implementation
     if (!list.tail) {
+      list.head = Node(value);
       list.tail = Node(value);
     } else {
-      list.head = list.tail;
+      //create a new object with key of 1
+      //list[1] = Node(value);
       list.tail = Node(value);
+      list.head.next = 'tail';
+      // list.head = list.tail;
+      console.log(list);
     }
+
   };
 
   list.removeHead = function() {
     list.head = list.tail;
-    //list.tail = null;
-    console.log(list.head);
     return list.head.value;
   };
 
   list.contains = function(target) {
+    // naive implementation
     if (target === list.head.value) {
       return true;
     } else if (target === list.tail.value) {
@@ -43,4 +49,6 @@ var Node = function(value) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+The above function has constant time complexity (O n)
+
  */
