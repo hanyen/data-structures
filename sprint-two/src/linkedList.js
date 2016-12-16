@@ -6,21 +6,14 @@ var LinkedList = function() {
   list.counter = 0;
   list.keyTrackingArray = []; // use this to find node
 
-  // 6 is passed to the function. value = 6
+  // A value is passed to this function
   list.addToTail = function(value) {
-    // naive implementation
-                                        /*if (!list.tail) {
-                                          list.head = Node(value);
-                                          list.tail = Node(value);
-                                        } else {*/
+    
       // for every value that's passed here
       // create a node object and assign a DIFFERENT key each time
         // use what to iterate the key? for loop? use counter? 
         // Keep the counter value in the list object.
-
-                                          /*list.tail = Node(value);
-                                          list.head.next = 'tail';*/
-      
+  
       //create node for the value passed to this function
       list[list.counter] = Node(value);
       
