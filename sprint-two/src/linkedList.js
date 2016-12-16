@@ -40,6 +40,10 @@ var LinkedList = function() {
       //push key to array to keep track of the linkedList key
       list.keyTrackingArray.push(list.counter);
 
+      // console.log(list.counter);
+      // console.log(list[list.counter].value);
+      // console.log('----------');
+
       //increase counter by 1 at the end
       list.counter++;
 
@@ -51,10 +55,17 @@ var LinkedList = function() {
                               // return list.head.value;
 
     // console.log(list.keyTrackingArray);
-    list.keyTrackingArray.shift();
-    // console.log(list.keyTrackingArray);
-
-    list.head = Object.create(list[list.keyTrackingArray[0]]);
+    
+    if (list.keyTrackingArray.length > 1) {
+      var removedHeadKey = list.keyTrackingArray.shift();
+      //console.log(returnValue);
+      list.head = Object.create(list[list.keyTrackingArray[0]]);
+      return list[removedHeadKey].value;
+    } else {
+      list.head = null;
+      return list[0].value; 
+    }
+    
   };
 
   list.contains = function(target) {
