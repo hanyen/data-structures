@@ -66,7 +66,7 @@ describe('linkedList', function() {
   });
 
 
-  it('should contain values that was added', function() {
+  it('should contain values that was added and shouldn\'t contain the ones removed ', function() {
     linkedList.addToTail(4);
     linkedList.addToTail(5);
     linkedList.addToTail(6);
