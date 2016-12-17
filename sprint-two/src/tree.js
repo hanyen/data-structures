@@ -27,13 +27,12 @@ treeMethods.contains = function(target) {
   //console.log("parent value: " + this.value);
   console.log('target: ' + target);
   var acc = false;
-  return traverse(this.children);
   
-  function traverse(childrenArray) {
+  
+  var traverse = function (childrenArray) {
     // problem: the second array element is not traversed.
     // console.log(childrenArray.length);
     
-
     for (var i = 0; i < childrenArray.length; i++) {
       console.log('value found during traverse: ' + childrenArray[i].value);
       
@@ -44,9 +43,7 @@ treeMethods.contains = function(target) {
         // console.log('true');
         acc = true;
         // check if children array contains value
-      } 
-
-      else if (childrenArray[i].children.length > 0 ) {
+      } else if (childrenArray[i].children.length > 0 ) {
         // it goes here because it couldn't find the target in the first level
         // console.log('i am here');
         // why this is not executed
@@ -56,43 +53,12 @@ treeMethods.contains = function(target) {
     }
     console.log('acc value is: ' + acc);
     return acc;
-  }
+  };
 
-  /*function traverse(childrenArray) {
-    
-    for (var i = 0; i < childrenArray.length; i++) {
-      // console.log('passed object value:' + childrenArray[i].value);
-      if (childrenArray[i].value === target) {
-        console.log('value traversed: ' + childrenArray[i].value);
-        // console.log('i should be here!!!!');
-        // console.log('Node value: ' + childrenArray[i].value);
-        // console.log('true');
-        return true;
-        // check if children array contains value
-      } else if (childrenArray[i].children.length > 0 ) {
-        // it goes here because it couldn't find the target in the first level
-        // console.log('i am here');
-        // why this is not executed
-        return traverse(childrenArray[i].children);
-
-      } else {
-        // console.log('i am here INSTEAD');
-        return false;
-      }
-    }*/
-  
-    
-    //if this.children array is not null
-      //call the function again and pass the children
-    //console.log('array length: ' + this.child.children.length);
-    //if (this.child.children.length > 0) {
-      //this = this.child;
-      //treeMethods.contains(target);
-    //}
-  
+  return traverse(this.children);
 };
 
-// assume we need this
+
 var child = function(value) {
   var child = {};
 
@@ -104,5 +70,8 @@ var child = function(value) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ 
+ The time complexity of the above function is Linear.
+
  */
 
