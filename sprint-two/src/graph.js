@@ -9,14 +9,12 @@ var Graph = function() {
 
 // Add a node to the graph, passing in the node's value.
 Graph.prototype.addNode = function(node) {
-  // create a new node with value of 1
   this.values.push(node);
 };
 
 // Return a boolean value indicating if the value passed to contains is represented in the graph.
 Graph.prototype.contains = function(node) {
   for (var i = 0; i < this.values.length; i++) {
-    console.log("node value: " + this.values[i]);
     if (this.values[i] === node) {
       
       return true;
@@ -31,16 +29,9 @@ Graph.prototype.removeNode = function(node) {
       this.values[i] = null; //refactor this
     }
   }
-  //remove the connection also //refactor this
-  for (var i = 0; i < this.edge.length; i++) {
-    console.log(this.edge[i]);
-    if (this.edge[i].includes(node)) {
-      // memo = i;
-      this.edge[i][0] = null; //refactor this
-      this.edge[i][1] = null; //refactor this
-    } 
-  }
-
+  //remove the connection also
+  //pass 'fromRemoveNodeFunc' to remove array-pair with one matching element
+  this.removeEdge(node, 'fromRemoveNodeFunc'); 
 };
 
 // Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.
@@ -50,10 +41,9 @@ Graph.prototype.hasEdge = function(fromNode, toNode) {
   for (var i = 0; i < this.edge.length; i++) {
     if (this.edge[i].includes(fromNode && toNode)) {
       return true;
-    } else {
-      return false;
     }
   }
+  return false;
 };
 
 // Connects two nodes in a graph by adding an edge between them.
@@ -64,24 +54,19 @@ Graph.prototype.addEdge = function(fromNode, toNode) {
   edgeArr.push(fromNode);
   edgeArr.push(toNode);
   this.edge.push(edgeArr);
-  console.log(this.edge);
 };
 
 // Remove an edge between any two specified (by value) nodes.
 Graph.prototype.removeEdge = function(fromNode, toNode) {
-  // var memo;
-  
+  var indexToRemove;
   for (var i = 0; i < this.edge.length; i++) {
-    console.log(this.edge[i]);
     if (this.edge[i].includes(fromNode && toNode)) {
-      // memo = i;
-      this.edge[i][0] = null; //refactor this
-      this.edge[i][1] = null; //refactor this
-    } 
+      indexToRemove = i;
+    } else if (this.edge[i].includes(fromNode) && toNode === 'fromRemoveNodeFunc') {
+      indexToRemove = i;
+    }
   }
-  // this.edge.[i]splice(memo, 1);
-  // this.edge = [];
-  // console.log(this.edge);
+  this.edge.splice(indexToRemove, 1);
 };
 
 // Pass in a callback which will be executed on each node of the graph.
@@ -93,6 +78,8 @@ Graph.prototype.forEachNode = function(cb) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ 
+Linear time complexity
  */
 
 
