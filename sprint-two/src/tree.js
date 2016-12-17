@@ -23,9 +23,9 @@ treeMethods.addChild = function(value) {
 // be found as the value of the target node or any descendant node
 treeMethods.contains = function(target) {
   //print out how the array looks like
-  console.log(this.children);
+  // console.log(this.children);
   //console.log("parent value: " + this.value);
-  console.log('target: ' + target);
+  // console.log('target: ' + target);
   var acc = false;
   
   
@@ -34,10 +34,10 @@ treeMethods.contains = function(target) {
     // console.log(childrenArray.length);
     
     for (var i = 0; i < childrenArray.length; i++) {
-      console.log('value found during traverse: ' + childrenArray[i].value);
+      // console.log('value found during traverse: ' + childrenArray[i].value);
       
       if (childrenArray[i].value === target) {
-        console.log('VALUE FOUND: ' + childrenArray[i].value);
+        // console.log('VALUE FOUND: ' + childrenArray[i].value);
         // console.log('i should be here!!!!');
         // console.log('Node value: ' + childrenArray[i].value);
         // console.log('true');
@@ -51,7 +51,7 @@ treeMethods.contains = function(target) {
 
       } 
     }
-    console.log('acc value is: ' + acc);
+    // console.log('acc value is: ' + acc);
     return acc;
   };
 

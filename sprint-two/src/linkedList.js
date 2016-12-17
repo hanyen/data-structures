@@ -9,36 +9,36 @@ var LinkedList = function() {
   // A value is passed to this function
   list.addToTail = function(value) {
     
-      // for every value that's passed here
-      // create a node object and assign a DIFFERENT key each time
-        // use what to iterate the key? for loop? use counter? 
-        // Keep the counter value in the list object.
-  
-      //create node for the value passed to this function
-      list[list.counter] = Node(value);
-      
-      // need to set the previous key to the new value
-      if (list.counter > 1) {
-        list[list.counter - 1].next = list.counter;
-      }
-      
-      //set head if (!list.head)
-      if (!list.head) {
-        list.head = Object.create(list[0]);
-      }
-      // use prototypal to look up head and tail value
-       
-      list.tail = Object.create(list[list.counter]);
-      
-      //push key to array to keep track of the linkedList key
-      list.keyTrackingArray.push(list.counter);
+    // for every value that's passed here
+    // create a node object and assign a DIFFERENT key each time
+      // use what to iterate the key? for loop? use counter? 
+      // Keep the counter value in the list object.
 
-      // console.log(list.counter);
-      // console.log(list[list.counter].value);
-      // console.log('----------');
+    //create node for the value passed to this function
+    list[list.counter] = Node(value);
+    
+    // need to set the previous key to the new value
+    if (list.counter > 1) {
+      list[list.counter - 1].next = list.counter;
+    }
+    
+    //set head if (!list.head)
+    if (!list.head) {
+      list.head = Object.create(list[0]);
+    }
+    // use prototypal to look up head and tail value
+     
+    list.tail = Object.create(list[list.counter]);
+    
+    //push key to array to keep track of the linkedList key
+    list.keyTrackingArray.push(list.counter);
 
-      //increase counter by 1 at the end
-      list.counter++;
+    // console.log(list.counter);
+    // console.log(list[list.counter].value);
+    // console.log('----------');
+
+    //increase counter by 1 at the end
+    list.counter++;
 
   };
 
