@@ -9,6 +9,7 @@ var setPrototype = {};
 
 setPrototype.add = function(item) {
   this._storage.push(item);
+  //check if the item is already in the array. ie. no duplicate.
 };
 
 setPrototype.contains = function(item) {
@@ -26,7 +27,7 @@ setPrototype.remove = function(item) {
       indexToRemove = i;
     }
   }
-  this._storage.splice(indexToRemove,1);
+  this._storage.splice(indexToRemove, 1);
 };
 
 /*
