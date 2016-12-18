@@ -19,14 +19,19 @@ HashTable.prototype.insert = function(k, v) {
     for (var i = 0; i < bucket.length; i++) {
       if (bucket[i][0] === k) {
         bucket[i][1] = v;
-      }   
+        return;
+      } 
     }
-    
+    // if key input does not match existing key in bucket, 
+    this._storage.each(function(item, i, storage) {
+      console.log('i am here');
+      console.log(item);
+      if (i === index) {
+        item.push([k, v]);
+      }
+    });
 
   } else {
-    // k = Bob
-    // v = Loblaw
-    
     this._storage.set(index, [[k, v]]);
   }
   //console.log(this._storage.get(index));
@@ -46,11 +51,16 @@ HashTable.prototype.retrieve = function(k) {
   var bucket = this._storage.get(index);
   
   // check if the array element is undefined
-  if (bucket[0] !== undefined) {
-    return bucket[0][1];
-  } else {
-    // do nothing
+  for (var i = 0; i < bucket.length; i++) {
+    if (bucket[i][0] === k) {
+      return bucket[i][1]; 
+    }  
   }
+  // if (bucket[0] !== undefined) {
+  //   return bucket[0][1];
+  // } else {
+  //   // do nothing
+  // }
   
 };
 
