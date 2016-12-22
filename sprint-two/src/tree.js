@@ -2,70 +2,51 @@ var Tree = function(value) {
   // functional with shared method
   var newTree = {};
   newTree.value = value;
-
   // your code here
-  newTree.children = [];  // fix me // an array containing a number of subtrees // [ , , , , ]
+  newTree.children = [];
   
   _.extend(newTree, treeMethods);
 
   return newTree;
 };
 
+//create an object to hold the below functions and pass it to Tree function above (extended using _.extend)
 var treeMethods = {};
 
 //takes any value, sets that as the target of a node, and adds that 
 //node as a child of the tree
 treeMethods.addChild = function(value) {
-  this.children.push(child(value));
+  //call the Tree function to create an object and push it to .children array
+  this.children.push(Tree(value));
 };
 
 // takes any input and returns a boolean reflecting whether it can 
 // be found as the value of the target node or any descendant node
 treeMethods.contains = function(target) {
-  //print out how the array looks like
-  // console.log(this.children);
-  //console.log("parent value: " + this.value);
-  // console.log('target: ' + target);
+
+  //declare an accumulator variable and set it to false
   var acc = false;
-  
-  
-  var traverse = function (childrenArray) {
-    // problem: the second array element is not traversed.
-    // console.log(childrenArray.length);
-    
+  //create a traverse function that accept a children array
+  var traverse = function (childrenArray) {  
+    //iterate through the children array
     for (var i = 0; i < childrenArray.length; i++) {
-      // console.log('value found during traverse: ' + childrenArray[i].value);
-      
+      //check if the current element is equal the passed argument (target)
       if (childrenArray[i].value === target) {
-        // console.log('VALUE FOUND: ' + childrenArray[i].value);
-        // console.log('i should be here!!!!');
-        // console.log('Node value: ' + childrenArray[i].value);
-        // console.log('true');
+        // if yes, set to true 
         acc = true;
         // check if children array contains value
-      } else if (childrenArray[i].children.length > 0 ) {
-        // it goes here because it couldn't find the target in the first level
-        // console.log('i am here');
-        // why this is not executed
-        traverse (childrenArray[i].children);
-
+      } 
+        // else, check if the current element's children array holds value (i.e. has children)
+        else if (childrenArray[i].children.length > 0 ) {
+          // if yes, call traverse() again and pass the element's children array
+          traverse (childrenArray[i].children);
       } 
     }
-    // console.log('acc value is: ' + acc);
+    // When the base case is reached (no more children, i.e. children array has no value) return the accumulator.
     return acc;
   };
-
+  // call the traverse function and pass the root's children array
   return traverse(this.children);
-};
-
-
-var child = function(value) {
-  var child = {};
-
-  child.value = value;
-  child.children = [];
-  child.addChild = treeMethods.addChild;
-  return child;
 };
 
 /*
