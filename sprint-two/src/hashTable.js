@@ -2,7 +2,23 @@
 
 var HashTable = function() {
   this._limit = 8;
-  this._storage = LimitedArray(this._limit);
+  this._storage = LimitedArray(this._limit); // object
+  // create a var to count total number of tuples
+  // this.counter = 0;
+  
+  //this.insert
+    // when a tupple is inserted, 
+    // increase count++. 
+    // If count = 6, call resize function
+      
+      //*** inside resize function
+      // change this._limit to 16
+      // create a new table storage2 = LimitedArray(16);
+        // pass each tuple into the hash function to get index number
+        // put tupples in the new table
+
+  //this.retrieve
+  //this.remove
 };
 
 HashTable.prototype.insert = function(k, v) {
@@ -24,7 +40,6 @@ HashTable.prototype.insert = function(k, v) {
     }
     // if key input does not match existing key in bucket, 
     this._storage.each(function(item, i, storage) {
-      console.log('i am here');
       console.log(item);
       if (i === index) {
         item.push([k, v]);
@@ -80,6 +95,7 @@ HashTable.prototype.remove = function(k) {
   bucket.splice(0, 1);
 };
 
+// create resize function
 
 
 /*
