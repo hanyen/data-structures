@@ -2,84 +2,43 @@ var LinkedList = function() {
   var list = {};
   list.head = null;
   list.tail = null;
-  //create a counter property
-  list.counter = 0;
-  list.keyTrackingArray = []; // use this to find node
+  list.tailCounter = 0;
+  list.headCounter = 0
 
-  // A value is passed to this function
   list.addToTail = function(value) {
-    
-    // for every value that's passed here
-    // create a node object and assign a DIFFERENT key each time
-      // use what to iterate the key? for loop? use counter? 
-      // Keep the counter value in the list object.
-
-    //create node for the value passed to this function
-    list[list.counter] = Node(value);
-    
-    // need to set the previous key to the new value
-    if (list.counter > 1) {
-      list[list.counter - 1].next = list.counter;
-    }
-    
-    //set head if (!list.head)
-    if (!list.head) {
-      list.head = Object.create(list[0]);
-    }
-    // use prototypal to look up head and tail value
-     
-    list.tail = Object.create(list[list.counter]);
-    
-    //push key to array to keep track of the linkedList key
-    list.keyTrackingArray.push(list.counter);
-
-    // console.log(list.counter);
-    // console.log(list[list.counter].value);
-    // console.log('----------');
-
-    //increase counter by 1 at the end
-    list.counter++;
-
+      //create a new node
+      console.log('add ' + value);
+      list[list.tailCounter] = Node(value);
+      //insert new tail node in the previous tail's node next property.
+      if (list.tailCounter > 0) {
+        list[list.tailCounter - 1].next = list[list.tailCounter];
+      }
+      //set tail to the new node
+      list.tail = list[list.tailCounter];
+      //set head to the new node using a different counter
+      list.head = list[list.headCounter];
+      //increase tailCounter
+      list.tailCounter++;
   };
 
   list.removeHead = function() {
-                      // naive implementation
-                              // list.head = list.tail;
-                              // return list.head.value;
-
-    // console.log(list.keyTrackingArray);
-    
-    if (list.keyTrackingArray.length > 1) {
-      var removedHeadKey = list.keyTrackingArray.shift();
-      //console.log(returnValue);
-      list.head = Object.create(list[list.keyTrackingArray[0]]);
-      return list[removedHeadKey].value;
-    } else {
-      list.head = null;
-      return list[0].value; 
-    }
-    
+    //create a variable to hold the head value to be removed
+    var returnVal = list[list.headCounter];
+    //increase headCounter so that it points to the next node
+    list.headCounter++;
+    //set the head to the next node
+    list.head = list[list.headCounter];
+    //return the removed head's value
+    return returnVal.value;
   };
 
   list.contains = function(target) {
-                      // naive implementation
-                              // if (target === list.head.value) {
-                              //   return true;
-                              // } else if (target === list.tail.value) {
-                              //   return true;
-                              // }
-                              // return false;
-    
-    //convert list object to array
-      // var arr = Object.keys(list).map(function (key) { return list[key]; });
-      // console.log(arr);
-
-    //use list.keyTrackingArray to iterate through the keys
-    for (var i = 0; i < list.keyTrackingArray.length; i++) {
-      // need to think how to iterate the array
-      if (list[list.keyTrackingArray[i]].value === target ) {
+    //loop through the nodes, starting from the head and ends at the tail
+    for (var i = list.headCounter; i < list.tailCounter; i++) {
+      //check if the node is not undefined (i.e. it exists) and the value is equal target
+      if (list[i].value !== undefined && list[i].value === target) {
         return true;
-      }
+      } 
     }
     return false;
 
