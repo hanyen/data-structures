@@ -43,16 +43,14 @@ treePrototype.insert = function(item) {
 };
 
 treePrototype.contains = function(target) {
-  console.log('-------');
+  //declare found variable and set it to false
   var found = false;
-  
+  //declare traverseLeft function
   var traverseLeft = function(node) {
-    
     //if found in root
     if (node.value === target) {
       found = true;
     }
-
     //traverse left first
     if (node.left) {
       if (node.left.value === target) {
@@ -63,7 +61,7 @@ treePrototype.contains = function(target) {
       }
     }  
   }
-
+  //declare traverseRight function
   var traverseRight = function(node) {
     //traverse right first
     if (node.right) {
@@ -82,8 +80,24 @@ treePrototype.contains = function(target) {
   return found;
 };
 
-treePrototype.depthFirstLog = function(item) {
+treePrototype.depthFirstLog = function(func) {
   
+  //declare traverseLeft function
+  var traverse = function(node) {
+    if (node.value !== undefined) {
+      func(node.value);
+    }
+    if (node.left) {
+      traverse(node.left);
+    }
+    if (node.right) {
+      traverse(node.right);
+    }
+  }
+  
+  traverse(this);
+  
+  return;
 };
 
 
