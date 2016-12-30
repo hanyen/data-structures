@@ -1,6 +1,6 @@
 var BinarySearchTree = function(value) {
   var binaryTree = Object.create(treePrototype);
-  binaryTree.value = 5; //set initial value
+  binaryTree.value = 5; //set initial value to decide whether a node should go to left or right
   binaryTree.left = null;
   binaryTree.right = null;
   return binaryTree;
@@ -10,6 +10,7 @@ var BinarySearchTree = function(value) {
 var treePrototype = {};
 
 treePrototype.insert = function(item) {
+  //currently only supports tree two level deep. Inserting a third level will overwrite values on level 2
   //create a new object
   var node = Object.create(treePrototype);
   //set the new object's value to the argument

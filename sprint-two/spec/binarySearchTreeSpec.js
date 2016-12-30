@@ -20,12 +20,46 @@ describe('binarySearchTree', function() {
     expect(binarySearchTree.right.left.value).to.equal(6);
   });
 
+  it('should insert values at the correct location in the tree', function() {
+    binarySearchTree.insert(0);
+    binarySearchTree.insert(1);
+    //binarySearchTree.insert(3);
+    binarySearchTree.insert(7);
+    binarySearchTree.insert(6);
+    binarySearchTree.insert(16);
+    binarySearchTree.insert(5);
+    //binarySearchTree.insert(17);
+    //binarySearchTree.insert(2);
+    //binarySearchTree.insert(4);
+    expect(binarySearchTree.value).to.equal(5);
+    expect(binarySearchTree.left.value).to.equal(0);
+    expect(binarySearchTree.left.right.value).to.equal(1);
+    expect(binarySearchTree.right.value).to.equal(7);
+    expect(binarySearchTree.right.left.value).to.equal(6);
+    expect(binarySearchTree.right.right.value).to.equal(16);
+  });
+
   it('should have a working "contains" method', function() {
     binarySearchTree.insert(2);
     binarySearchTree.insert(3);
     binarySearchTree.insert(7);
     expect(binarySearchTree.contains(7)).to.equal(true);
     expect(binarySearchTree.contains(8)).to.equal(false);
+  });
+
+  it('should have a working "contains" method', function() {
+    binarySearchTree.insert(2);
+    binarySearchTree.insert(3);
+    binarySearchTree.insert(7);
+    binarySearchTree.insert(5);
+    binarySearchTree.insert(1);
+    binarySearchTree.insert(9);
+    expect(binarySearchTree.contains(9)).to.equal(true);
+    expect(binarySearchTree.contains(2)).to.equal(true);
+    expect(binarySearchTree.contains(7)).to.equal(true);
+    expect(binarySearchTree.contains(1)).to.equal(true);
+    expect(binarySearchTree.contains(3)).to.equal(true);
+    expect(binarySearchTree.contains(5)).to.equal(true);
   });
 
   it('should execute a callback on every value in a tree using "depthFirstLog"', function() {
