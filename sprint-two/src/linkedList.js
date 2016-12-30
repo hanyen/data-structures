@@ -7,7 +7,6 @@ var LinkedList = function() {
 
   list.addToTail = function(value) {
       //create a new node
-      console.log('add ' + value);
       list[list.tailCounter] = Node(value);
       //insert new tail node in the previous tail's node next property.
       if (list.tailCounter > 0) {
